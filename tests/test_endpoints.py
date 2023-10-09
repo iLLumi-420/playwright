@@ -2,9 +2,6 @@ from playwright.sync_api import Page, expect
 from fastapi.testclient import TestClient
 from app.main import app
 
-import sys
-sys.path.append('/home/sandeep/Desktop/ankamala/fastapi_playwright')
-
 
 client = TestClient(app)
 
@@ -45,4 +42,3 @@ def test_endpoints(page:Page):
     assert "hello" in content
     assert "world" in content
         
-       
