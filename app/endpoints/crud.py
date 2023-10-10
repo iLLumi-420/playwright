@@ -6,8 +6,6 @@ import duckdb
 router = APIRouter()
 
 
-from playwright.sync_api import sync_playwright
-
 conn = duckdb.connect('./database/db.duckdb')
 
 conn.execute("""
@@ -102,21 +100,7 @@ def delete_user(user_id: int):
 
     return user_to_return
 
-@router.get('/scrape/')
-def return_html(url: str):
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page()
 
-        try:
-            page.goto(url)
-            content = page.content()
-        except Exception as e:
-            return HTTPException(status_code=500, detail=str(e))
-        finally:
-            browser.close()
-    
-    return {'html': content}
 
 
 
