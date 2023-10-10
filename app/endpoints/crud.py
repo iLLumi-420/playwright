@@ -1,0 +1,123 @@
+from fastapi import APIRouter, HTTPException
+from pydantic import BaseModel
+from typing import List
+import duckdb
+
+router = APIRouter()
+
+
+from playwright.sync_api import sync_playwright
+
+conn = duckdb.connect('./database/db.duckdb')
+
+conn.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+             id INTEGER PRIMARY KEY,
+             name VARCHAR,
+             username VARCHAR UNIQUE
+    )
+""")
+
+
+class User(BaseModel):
+    id: int
+    name: str
+    username: str
+
+
+
+
+@router.get('/')
+def hello_world():
+    return {"hello": "world"}
+
+@router.post('/users/', response_model=User)
+def create_user(user: User):
+    user_data = user.dict()
+    conn.execute("INSERT INTO users (id, name, username) VALUES (?, ?, ?)", (user_data['id'], user_data['name'], user_data['username']))
+    conn.commit()
+
+    result = conn.execute(f"SELECT * from users WHERE id=?",(user_data['id'],)).fetchone()
+
+    return {
+        'id': result[0],
+        'name': result[1],
+        'username': result[2]
+    }
+
+@router.get('/users/', response_model=List[User])
+def get_all_users():
+    results = conn.execute("SELECT * from users").fetchall()
+    return [{
+        'id': result[0],
+        'name': result[1],
+        'username': result[2]
+    } for result in results]
+
+@router.get("/users/{user_id}", response_model=User)
+def get_user(user_id: int):
+    result = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+    print(result)
+    if not result:
+        raise HTTPException(status_code=404, detail="Item not found")
+    return {
+        'id': result[0],
+        'name': result[1],
+        'username': result[2],
+    }
+
+@router.put('/users/{user_id}', response_model=User)
+def update_user(user: User):
+    user_data = user.dict()
+    conn.execute("UPDATE users SET name = ?, username = ? WHERE id = ?", (user_data['name'], user_data['username'], user_data['id']))
+    
+    if conn.total_changes == 0:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    conn.commit()
+
+    result = conn.execute("SELECT * FROM users WHERE id = ?", (user_data['id'],)).fetchone()
+    
+    return {
+        'id': result[0],
+        'name': result[1],
+        'username': result[2],
+    }
+
+@router.delete('/users/{user_id}', response_model=User)
+def delete_user(user_id: int):
+    result = conn.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+    if not result:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    user_to_return = {
+        'id': result[0],
+        'name': result[1],
+        'username': result[2]
+    }
+    
+    conn.execute("DELETE FROM users WHERE id = ?", (user_id,))
+
+    conn.commit()
+
+    return user_to_return
+
+@router.get('/scrape/')
+def return_html(url: str):
+    with sync_playwright() as p:
+        browser = p.chromium.launch()
+        page = browser.new_page()
+
+        try:
+            page.goto(url)
+            content = page.content()
+        except Exception as e:
+            return HTTPException(status_code=500, detail=str(e))
+        finally:
+            browser.close()
+    
+    return {'html': content}
+
+
+
+
