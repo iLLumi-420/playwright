@@ -1,9 +1,8 @@
 from fastapi import APIRouter, HTTPException
+from playwright.sync_api import sync_playwright
+
 
 router = APIRouter()
-
-
-from playwright.sync_api import sync_playwright
 
 @router.get('/')
 def return_html(url: str):
