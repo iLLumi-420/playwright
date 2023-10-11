@@ -4,12 +4,15 @@ from playwright.async_api import async_playwright
 
 
 
+
 app = FastAPI()
 
 
 
 p = None
 browser = None
+
+
 
 @app.on_event("startup")
 async def startup_event():

@@ -1,9 +1,11 @@
-from fastapi import APIRouter, HTTPException, Depends
+from fastapi import APIRouter, HTTPException, Depends, Body
 from playwright.async_api import Page
-from dotenv import load_dotenv
+import asyncio
 from ..config import EMAIL, PASSWORD
 
+
 router = APIRouter()
+
 
 def get_browser():
     from ..main import browser 
@@ -20,23 +22,36 @@ async def login_to_linkedin(page: Page):
 
 
 
-@router.get('/')
-async def return_html(url: str, browser = Depends(get_browser)):
+async def return_html(url: str, page: Page):
 
+    await page.goto(url)
+    await page.wait_for_selector('h1.text-heading-xlarge', timeout=30000)
+
+    name_element = page.locator('h1.text-heading-xlarge')
+    name = await name_element.inner_text()
+
+    return {'url': url, 'name': name}
+
+async def process_profile(url_list, browser):
     page = await browser.new_page()
-    print(page)
     try:
         await login_to_linkedin(page)
-        await page.goto(url)
-        await page.wait_for_selector('h1.text-heading-xlarge', timeout=30000)
-
-        name_element = page.locator('h1.text-heading-xlarge')
-        name = await name_element.inner_text()
-
-    except Exception as e:
-        return HTTPException(status_code=500, detail=str(e))
+        results = []
+        for url in url_list:
+            name = await return_html(url, page)
+            results.append(name)
+            await asyncio.sleep(3) 
+        
+        return results
     finally:
         await page.close()
-    
-    return {'name': name}
+
+
+
+@router.post('/')
+async def scrape_profiles(urls= Body(...), browser = Depends(get_browser)):
+    results = await process_profile(urls, browser)
+    return results
+
+
 
