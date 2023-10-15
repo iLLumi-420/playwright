@@ -14,42 +14,30 @@ api = Linkedin(EMAIL, PASSWORD)
 
 def get_reactions(url, urn_id):
 
-    posts = api.get_profile_posts(public_id=urn_id)
     
-    for post in posts:
-        string = post['entityUrn']
-        start = string.find("urn:li:activity:")
-        if start != -1:  
-            end = string.find(",", start)  
-            extracted_string = string[start:end]
+
+    url_params = {
+                "count": min(5, 10),
+                "start": 0,
+                "q": "memberShareFeed",
+                "moduleKey": "member-shares:phone",
+                "includeLongTermHistory": True,
+            }
+
+    profile_urn = f"urn:li:fsd_profile:{urn_id}"
     
-            encoded_string = quote(extracted_string, safe='')
-            encoded_url = url.format(encoded_string)
-            print(encoded_url)
+    url_params["profileUrn"] = profile_urn
 
-            url_params = {
-                        "count": min(5, 10),
-                        "start": 0,
-                        "q": "memberShareFeed",
-                        "moduleKey": "member-shares:phone",
-                        "includeLongTermHistory": True,
-                    }
-
-            profile_urn = f"urn:li:fsd_profile:{urn_id}"
-            
-            url_params["profileUrn"] = profile_urn
-
-            res = api.client.session.get(encoded_url, params=url_params)
-            print(res.status_code)
-            print(res.text)
-            return res.json()
+    res = api.client.session.get(url, params=url_params)
+    print(res.status_code)
+    print(res.text)
+    return res.json()
 
 
-            
+url = 'https://www.linkedin.com/voyager/api/voyagerSocialDashReactions?threadUrn=urn%3Ali%3AugcPost%3A7083331764475072512'          
 
-url = 'https://www.linkedin.com/voyager/api/voyagerSocialDashReactions?threadUrn={}'
 
-test = get_reactions(url, 'sabita-poudel-2375b9197')
+test = get_reactions(url, 'hosneara-smrity-74b3b6146')
 print(test)
 
 
