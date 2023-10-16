@@ -7,38 +7,98 @@ from urllib.parse import quote
 
 
 api = Linkedin(EMAIL, PASSWORD)
-# profile = api.get_profile('rujan-singh-b18a807a')
+# profile = api.get_profile('mohammedfasilkp')
 # print(profile)
 
-        
 
-def get_reactions(url, urn_id):
+# posts = api.get_profile_posts(public_id='sabrinaooi')
 
-    
+# for post in posts:
+#     print(post)
+#     print(post['entityUrn'])
+#     input('Enter to continue')
 
+# comment = api.get_post_comments(post_urn='7117352213353549824')
+# print(comment)
+
+def get_comments(url, post_urn):
     url_params = {
-                "count": min(5, 10),
-                "start": 0,
-                "q": "memberShareFeed",
-                "moduleKey": "member-shares:phone",
-                "includeLongTermHistory": True,
-            }
+            "commentsCount": 5,
+            "start": 0,
+            "moduleKey": "feed-item:desktop",
+            "q": "backendUrnOrNss",
+            "sortOrder": "RELEVANCE",
+            "urnOrNss": f'urn:li:activity:{post_urn}'
+        }
+    url_params["updateId"] = "activity:" + post_urn
+    commnts = api.client.session.get(url, params=url_params)
+    return commnts
 
-    profile_urn = f"urn:li:fsd_profile:{urn_id}"
+def get_reactions(url):
+    url_params = {
+        "variables": f"(count:10,start:0,threadUrn:urn:li:activity:7099418906125029377)",
+        "queryId": "voyagerSocialDashReactions.fa18066ba15b8cf41b203d2c052b2802"
+    }
+
+    reactions = api.client.session.get(url, params=url_params)
+    return reactions
+
     
-    url_params["profileUrn"] = profile_urn
+url = 'https://www.linkedin.com/voyager/api/graphql'
 
-    res = api.client.session.get(url, params=url_params)
-    print(res.status_code)
-    print(res.text)
-    return res.json()
+urn = ''
 
-
-url = 'https://www.linkedin.com/voyager/api/voyagerSocialDashReactions?threadUrn=urn%3Ali%3AugcPost%3A7083331764475072512'          
+reactions = get_reactions(url)
+print(reactions)
 
 
-test = get_reactions(url, 'hosneara-smrity-74b3b6146')
-print(test)
+
+
+
+
+
+
+# post_urn = '7115602900160053248'
+# url_comments = 'https://www.linkedin.com/voyager/api/feed/updatesV2'
+
+# comments = get_comments(url_comments, post_urn)
+# print(comments.json())
+
+
+
+
+
+
+
+
+
+# def get_reactions(url, urn_id):
+
+    
+
+#     url_params = {
+#                 "count": min(5, 10),
+#                 "start": 0,
+#                 "q": "memberShareFeed",
+#                 "moduleKey": "member-shares:phone",
+#                 "includeLongTermHistory": True,
+#             }
+
+#     profile_urn = f"urn:li:fsd_profile:{urn_id}"
+    
+#     url_params["profileUrn"] = profile_urn
+
+#     res = api.client.session.get(url, params=url_params)
+#     print(res.status_code)
+#     print(res.text)
+#     return res.json()
+
+
+# url = 'https://www.linkedin.com/voyager/api/voyagerSocialDashReactions?threadUrn=urn%3Ali%3AugcPost%3A7083331764475072512'          
+
+
+# test = get_reactions(url, 'hosneara-smrity-74b3b6146')
+# print(test)
 
 
 
