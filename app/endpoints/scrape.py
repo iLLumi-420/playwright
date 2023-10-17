@@ -4,156 +4,61 @@ import asyncio
 from app.config import EMAIL, PASSWORD
 from linkedin_api import Linkedin
 from urllib.parse import quote
+import time
 
 
 api = Linkedin(EMAIL, PASSWORD)
-# profile = api.get_profile('mohammedfasilkp')
-# print(profile)
 
+def get_reactions_details(): 
 
-# posts = api.get_profile_posts(public_id='sabrinaooi')
+    count = 10
+    start = 0
+    thread_Urn = quote('urn:li:activity:7117792651705274368')
+    queryId = "voyagerSocialDashReactions.fa18066ba15b8cf41b203d2c052b2802"
 
-# for post in posts:
-#     print(post)
-#     print(post['entityUrn'])
-#     input('Enter to continue')
+    reactions_data = []
+    reaction_count = {}
 
-# comment = api.get_post_comments(post_urn='7117352213353549824')
-# print(comment)
+    while True:
+        variables = f"(count:{count},start:{start},threadUrn:{thread_Urn})"
+        uri = f'/graphql?variables={variables}&queryId={queryId}'
+        response = api._fetch(uri=uri)
 
-def get_comments(url, post_urn):
-    url_params = {
-            "commentsCount": 5,
-            "start": 0,
-            "moduleKey": "feed-item:desktop",
-            "q": "backendUrnOrNss",
-            "sortOrder": "RELEVANCE",
-            "urnOrNss": f'urn:li:activity:{post_urn}'
-        }
-    url_params["updateId"] = "activity:" + post_urn
-    commnts = api.client.session.get(url, params=url_params)
-    return commnts
+        if response is None or response.status_code != 200:
+            break
 
-def get_reactions(url):
-    url_params = {
-        "variables": f"(count:10,start:0,threadUrn:urn:li:activity:7099418906125029377)",
-        "queryId": "voyagerSocialDashReactions.fa18066ba15b8cf41b203d2c052b2802"
-    }
-
-    reactions = api.client.session.get(url, params=url_params)
-    return reactions
-
+        print(response.text)
+        response = response.json()
     
-url = 'https://www.linkedin.com/voyager/api/graphql'
+        elements = response.get('data', {}).get('socialDashReactionsByReactionType', {}).get('elements')
+        print(response)  
 
-urn = ''
-
-reactions = get_reactions(url)
-print(reactions)
-
+        if not elements:
+            break
 
 
-
-
-
-
-
-# post_urn = '7115602900160053248'
-# url_comments = 'https://www.linkedin.com/voyager/api/feed/updatesV2'
-
-# comments = get_comments(url_comments, post_urn)
-# print(comments.json())
-
-
-
-
-
-
-
-
-
-# def get_reactions(url, urn_id):
-
-    
-
-#     url_params = {
-#                 "count": min(5, 10),
-#                 "start": 0,
-#                 "q": "memberShareFeed",
-#                 "moduleKey": "member-shares:phone",
-#                 "includeLongTermHistory": True,
-#             }
-
-#     profile_urn = f"urn:li:fsd_profile:{urn_id}"
-    
-#     url_params["profileUrn"] = profile_urn
-
-#     res = api.client.session.get(url, params=url_params)
-#     print(res.status_code)
-#     print(res.text)
-#     return res.json()
-
-
-# url = 'https://www.linkedin.com/voyager/api/voyagerSocialDashReactions?threadUrn=urn%3Ali%3AugcPost%3A7083331764475072512'          
-
-
-# test = get_reactions(url, 'hosneara-smrity-74b3b6146')
-# print(test)
-
-
-
-
-
-# router = APIRouter()
-
-
-# @router.get('/get_profile/{profile_id}')
-
-
-
-# def get_browser():
-#     from ..main import browser 
-#     return browser
-
-# async def login_to_linkedin(page: Page):
-
-#     await page.goto('https://www.linkedin.com/login')
-
-#     await page.fill('input[name="session_key"]', EMAIL)
-#     await page.fill('input[name="session_password"]', PASSWORD)
-
-#     await page.click("button[type='submit']")
-
-
-
-# async def return_html(url: str, page: Page):
-
-#     await page.goto(url)
-#     await page.wait_for_selector('h1.text-heading-xlarge', timeout=30000)
-
-#     name_element = page.locator('h1.text-heading-xlarge')
-#     name = await name_element.inner_text()
-
-#     return {'url': url, 'name': name}
-
-# async def process_profile(url_list, browser):
-#     page = await browser.new_page()
-#     try:
-#         await login_to_linkedin(page)
-#         results = []
-#         for url in url_list:
-#             name = await return_html(url, page)
-#             results.append(name)
-#             await asyncio.sleep(5) 
         
-#         return results
-#     finally:
-#         await page.close()
+        for item in elements:
+            reaction_type = item["reactionType"]
+            name = item["reactorLockup"]["title"]["text"]
+            description = None
+            if item.get("reactorLockup") and item["reactorLockup"].get("subtitle") and item["reactorLockup"]["subtitle"].get("text"):
+                description = item["reactorLockup"]["subtitle"]["text"]
+            print(name, description, reaction_type)
+            reactions_data.append({
+                "name": name,
+                "desc": description,
+                "reaction": reaction_type
+            })
+            reaction_count[reaction_type] = reaction_count.get(reaction_type, 0) + 1
+        
+        
+        start = start + 10
+        time.sleep(1)
 
+    return {'data':reactions_data, 'count':reaction_count}
+    
 
-
-# @router.post('/')
-# async def scrape_profiles(urls= Body(...), browser = Depends(get_browser)):
-#     results = await process_profile(urls, browser)
-#     return results
+data = get_reactions_details()
+print(data)
 
