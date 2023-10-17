@@ -13,7 +13,7 @@ def get_reactions_details():
 
     count = 10
     start = 0
-    thread_Urn = quote('urn:li:activity:7117792651705274368')
+    thread_Urn = quote('urn:li:activity:7115261980780679169')
     queryId = "voyagerSocialDashReactions.fa18066ba15b8cf41b203d2c052b2802"
 
     reactions_data = []
@@ -59,6 +59,10 @@ def get_reactions_details():
     return {'data':reactions_data, 'count':reaction_count}
     
 
+
+posts = api.get_profile_posts('ismar-hrnjicevic-77a526220', post_count=5)
+print(posts)
+print('----------------------------------')
 data = get_reactions_details()
 print(data)
 
