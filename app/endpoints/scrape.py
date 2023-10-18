@@ -1,6 +1,3 @@
-from fastapi import APIRouter, HTTPException, Depends, Body
-from playwright.async_api import Page
-import asyncio
 from app.config import EMAIL, PASSWORD
 from linkedin_api import Linkedin
 from urllib.parse import quote
@@ -9,20 +6,20 @@ import time
 
 api = Linkedin(EMAIL, PASSWORD)
 
-def get_reactions_details(): 
+def get_reactions_details(post_urn, queryId): 
 
     count = 10
     start = 0
-    thread_Urn = quote('urn:li:activity:7115261980780679169')
-    queryId = "voyagerSocialDashReactions.fa18066ba15b8cf41b203d2c052b2802"
+    thread_Urn = quote(f'urn:li:ugcPost:{post_urn}')
 
     reactions_data = []
     reaction_count = {}
 
     while True:
         variables = f"(count:{count},start:{start},threadUrn:{thread_Urn})"
-        uri = f'/graphql?variables={variables}&queryId={queryId}'
+        uri = f'/graphql?variables={variables}&&queryId={queryId}'
         response = api._fetch(uri=uri)
+        print(response.url)
 
         if response is None or response.status_code != 200:
             break
@@ -59,10 +56,9 @@ def get_reactions_details():
     return {'data':reactions_data, 'count':reaction_count}
     
 
+post_id = '7119530037011185664'
+query_id = 'voyagerSocialDashReactions.fa18066ba15b8cf41b203d2c052b2802'
 
-posts = api.get_profile_posts('ismar-hrnjicevic-77a526220', post_count=5)
-print(posts)
-print('----------------------------------')
-data = get_reactions_details()
+data = get_reactions_details(post_id, query_id)
 print(data)
 
