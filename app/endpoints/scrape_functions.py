@@ -2,7 +2,7 @@ import time
 from urllib.parse import quote
 from linkedin_api import Linkedin
 
-def get_reactions_details(api, post_urn): 
+def get_reactions_details(api: Linkedin, post_urn: str): 
 
     count = 10
     start = 0
@@ -47,10 +47,11 @@ def get_reactions_details(api, post_urn):
     return {'data':reactions_data, 'count':reaction_count}
 
 
-def search_posts(api : Linkedin, search_term):
+def search_posts(api : Linkedin, search_term: str):
 
     start = 0
     query_id = 'voyagerSearchDashClusters.522de52c041498ff853a0ecda602a0c0'
+    origin = 'FACETED_SEARCH'
 
     search_data = []
 
@@ -59,7 +60,7 @@ def search_posts(api : Linkedin, search_term):
         if start == 100:
             break
 
-        variables = f'(start:{start},origin:SWITCH_SEARCH_VERTICAL,query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:resultType,value:List(CONTENT))),includeFiltersInResponse:false))'
+        variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:resultType,value:List(CONTENT))),includeFiltersInResponse:false))'
 
         uri = f'/graphql?variables={variables}&&queryId={query_id}'
 
