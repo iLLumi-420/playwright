@@ -14,10 +14,10 @@ api = Linkedin(EMAIL, PASSWORD)
 
 
 data = search_posts(api, 'We’ve just updated our Page')
-print(data)
+
 
 with open('data.json', 'w') as file:
-    json.dump(data, file)
+    json.dump(data, file, indent=True)
 
 
 

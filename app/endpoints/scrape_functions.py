@@ -59,7 +59,7 @@ def search_posts(api : Linkedin, search_term: str):
 
     while True:
 
-        if start == 30:
+        if start == 20:
             break
 
         variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:datePosted,value:List(past-24h)),(key:resultType,value:List(CONTENT)),(key:sortBy,value:List(date_posted))),includeFiltersInResponse:false))'
@@ -72,11 +72,35 @@ def search_posts(api : Linkedin, search_term: str):
             break
         response_json = response.json()
 
-        print(response_json)
+
 
         elements = response_json.get('data', {}).get('searchDashClustersByAll',{}).get('elements',{})
 
-        search_data.append(elements)
+        for element in elements:
+            items = element['items'] if len(element['items']) > 1 else None
+            if items:
+                break
+
+
+        for each in items:
+            data = {}
+            item = each['item']['entityResult']
+
+            social_activity = item['insightsResolutionResults'][0]['socialActivityCountsInsight']
+            data['comments_number'] = social_activity['numComments']
+            data['likes_number'] = social_activity['numLikes']
+
+            attributes = item['title']['attributesV2'][0] if item['title']['attributesV2'] else []
+            if len(attributes)>0:
+
+                data['company_name'] = attributes['detailData']['companyName']['name']
+                data['company_url'] = attributes['detailData']['companyName']['url']
+                data['post_hashtag'] = attributes['detailData']['hashtag']
+            
+            print(data)
+            search_data.append(data)
+
+
         start = start + 10
         time.sleep(1)
         
