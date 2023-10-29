@@ -53,14 +53,16 @@ def search_posts(api : Linkedin, search_term: str):
     query_id = 'voyagerSearchDashClusters.522de52c041498ff853a0ecda602a0c0'
     origin = 'FACETED_SEARCH'
 
+   
+
     search_data = []
 
     while True:
 
-        if start == 100:
+        if start == 30:
             break
 
-        variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:resultType,value:List(CONTENT))),includeFiltersInResponse:false))'
+        variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:datePosted,value:List(past-24h)),(key:resultType,value:List(CONTENT)),(key:sortBy,value:List(date_posted))),includeFiltersInResponse:false))'
 
         uri = f'/graphql?variables={variables}&&queryId={query_id}'
 
@@ -70,8 +72,12 @@ def search_posts(api : Linkedin, search_term: str):
             break
         response_json = response.json()
 
-        search_data.append(response_json)
-        start = start + 20
+        print(response_json)
+
+        elements = response_json.get('data', {}).get('searchDashClustersByAll',{}).get('elements',{})
+
+        search_data.append(elements)
+        start = start + 10
         time.sleep(1)
         
 

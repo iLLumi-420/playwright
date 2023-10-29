@@ -3,19 +3,22 @@ from linkedin_api import Linkedin
 from urllib.parse import quote
 import time
 from scrape_functions import get_reactions_details, search_posts
+from bs4 import BeautifulSoup
+import json
+
+
 
 
 api = Linkedin(EMAIL, PASSWORD)
 
 
-    
 
-# post_id = '7119530037011185664'
-# 
-
-# data = get_reactions_details(api, post_id, query_id)
-
-data = search_posts(api, 'python')
+data = search_posts(api, 'We’ve just updated our Page')
 print(data)
+
+with open('data.json', 'w') as file:
+    json.dump(data, file)
+
+
 
 
