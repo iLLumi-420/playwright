@@ -13,7 +13,7 @@ api = Linkedin(EMAIL, PASSWORD)
 
 
 
-data = search_posts(api, 'We’ve just updated our Page')
+data = search_posts(api, 'we are hiring')
 
 
 with open('data.json', 'w') as file:

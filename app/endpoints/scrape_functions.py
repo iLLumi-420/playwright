@@ -90,6 +90,8 @@ def search_posts(api : Linkedin, search_term: str):
             data['comments_number'] = social_activity['numComments']
             data['likes_number'] = social_activity['numLikes']
 
+            data['text'] = item['summary']['text']
+
             attributes = item['title']['attributesV2'][0] if item['title']['attributesV2'] else []
             if len(attributes)>0:
 
