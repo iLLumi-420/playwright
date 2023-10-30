@@ -108,6 +108,7 @@ def search_posts(api : Linkedin, search_term: str):
                 
             else:
                 data['posted_by'] = item['title']['text']
+                data['actor_url'] = item['actorNavigationUrl']
             
             print(data)
             search_data.append(data)
