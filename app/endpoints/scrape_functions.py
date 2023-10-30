@@ -53,6 +53,7 @@ def search_posts(api : Linkedin, search_term: str):
     query_id = 'voyagerSearchDashClusters.522de52c041498ff853a0ecda602a0c0'
     origin = 'FACETED_SEARCH'
 
+
    
 
     search_data = []
@@ -62,7 +63,7 @@ def search_posts(api : Linkedin, search_term: str):
         if start == 20:
             break
 
-        variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:datePosted,value:List(past-24h)),(key:resultType,value:List(CONTENT)),(key:sortBy,value:List(date_posted))),includeFiltersInResponse:false))'
+        variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:datePosted,value:List(past-24h)),(key:resultType,value:List(CONTENT))),includeFiltersInResponse:false))'
 
         uri = f'/graphql?variables={variables}&&queryId={query_id}'
 
@@ -75,6 +76,8 @@ def search_posts(api : Linkedin, search_term: str):
 
 
         elements = response_json.get('data', {}).get('searchDashClustersByAll',{}).get('elements',{})
+        print(elements)
+        input('ENter')
 
         for element in elements:
             items = element['items'] if len(element['items']) > 1 else None
@@ -90,14 +93,21 @@ def search_posts(api : Linkedin, search_term: str):
             data['comments_number'] = social_activity['numComments']
             data['likes_number'] = social_activity['numLikes']
 
+            data['post_urn'] = item['navigationUrl']
+
             data['text'] = item['summary']['text']
 
             attributes = item['title']['attributesV2'][0] if item['title']['attributesV2'] else []
+            
+
             if len(attributes)>0:
 
                 data['company_name'] = attributes['detailData']['companyName']['name']
                 data['company_url'] = attributes['detailData']['companyName']['url']
                 data['post_hashtag'] = attributes['detailData']['hashtag']
+                
+            else:
+                data['posted_by'] = item['title']['text']
             
             print(data)
             search_data.append(data)
