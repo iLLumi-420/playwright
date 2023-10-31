@@ -3,42 +3,6 @@ from urllib.parse import quote
 from linkedin_api import Linkedin
 import json
 
-import datetime
-
-def convert_relative_time(relative_time):
-    # Split the relative time expression
-    units = {
-        'm': 'minutes',
-        'h' : 'hours',
-        'd' : 'days'
-    }
-    time_parts = relative_time.split()
-    print(time_parts)
-    if len(time_parts) != 3:
-        return relative_time  # Not a recognized format, return as is
-
-    # Extract the quantity and unit
-    quantity = int(time_parts[0])
-    unit = time_parts[1]
-
-    # Define a mapping of units to time deltas
-    unit_to_delta = {
-        "minute": datetime.timedelta(minutes=1),
-        "hour": datetime.timedelta(hours=1),
-        "day": datetime.timedelta(days=1)
-    }
-
-    # Calculate the absolute timestamp
-    delta = unit_to_delta.get(unit)
-    if delta:
-        absolute_time = datetime.datetime.utcnow() - (delta * quantity)
-        return absolute_time.isoformat()
-
-    return relative_time  # Unknown unit, return as is
-
-
-
-
 
 
 def get_reactions_details(api: Linkedin, post_urn: str): 
@@ -165,7 +129,7 @@ def get_required_data(each):
     data['publisher'] = item['title']['text']
     if data['publisher'] == 'Anshu Raj':
         with open('anshuraj.json', 'w') as file:
-            json.dump(item, file, indent=4)
+            json.dump(each, file, indent=4)
     data['publisher_url'] = item['actorNavigationUrl']
 
     # data["posted_at"] = convert_relative_time(item["secondarySubtitle"]['text'])
