@@ -52,8 +52,6 @@ def search_posts(api : Linkedin, search_term: str):
     start = 0
     query_id = 'voyagerSearchDashClusters.522de52c041498ff853a0ecda602a0c0'
     origin = 'FACETED_SEARCH'
-
-
    
 
     search_data = []
@@ -64,7 +62,6 @@ def search_posts(api : Linkedin, search_term: str):
             break
 
         variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:datePosted,value:List(past-24h)),(key:resultType,value:List(CONTENT))),includeFiltersInResponse:false))'
-
         uri = f'/graphql?variables={variables}&&queryId={query_id}'
 
         response = api._fetch(uri=uri)
@@ -72,8 +69,6 @@ def search_posts(api : Linkedin, search_term: str):
         if response is None or response.status_code != 200:
             break
         response_json = response.json()
-
-
 
         elements = response_json.get('data', {}).get('searchDashClustersByAll',{}).get('elements',{})
         print(elements)
@@ -86,31 +81,8 @@ def search_posts(api : Linkedin, search_term: str):
 
 
         for each in items:
-            data = {}
-            item = each['item']['entityResult']
 
-            social_activity = item['insightsResolutionResults'][0]['socialActivityCountsInsight']
-            data['comments_number'] = social_activity['numComments']
-            data['likes_number'] = social_activity['numLikes']
-
-            data['post_urn'] = item['navigationUrl']
-
-            data['text'] = item['summary']['text']
-
-            attributes = item['title']['attributesV2'][0] if item['title']['attributesV2'] else []
-            
-
-            if len(attributes)>0:
-
-                data['company_name'] = attributes['detailData']['companyName']['name']
-                data['company_url'] = attributes['detailData']['companyName']['url']
-                data['post_hashtag'] = attributes['detailData']['hashtag']
-                
-            else:
-                data['posted_by'] = item['title']['text']
-                data['actor_url'] = item['actorNavigationUrl']
-            
-            print(data)
+            data = get_required_data(each)
             search_data.append(data)
 
 
@@ -120,4 +92,36 @@ def search_posts(api : Linkedin, search_term: str):
 
     return search_data
 
-   
+
+def get_required_data(each):
+    data = {}
+    item = each['item']['entityResult']
+
+    data['post_id'] = item['trackingUrn']
+
+    data['post_url'] = item['navigationUrl']
+
+    social_activity = item['insightsResolutionResults'][0]['socialActivityCountsInsight']
+    data['comments'] = social_activity['numComments']
+    data['reactions'] = social_activity['numLikes']
+    
+    data['reaction_type'] = []
+    reactions_type = social_activity.get('reactionTypeCounts', {})
+
+    if reactions_type:
+        for reaction in reactions_type:
+            data['reaction_type'].append({
+                'type': f'{reaction["reactionType"]}',
+                'count': f'{reaction["count"]}'
+            })
+
+    
+
+    data['text'] = item['summary']['text']
+
+    data['publisher'] = item['title']['text']
+    data['publisher_url'] = item['actorNavigationUrl']
+    
+    return data
+    
+        
