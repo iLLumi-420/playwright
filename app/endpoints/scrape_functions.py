@@ -53,9 +53,9 @@ def get_reactions_details(api: Linkedin, post_urn: str):
 def search_posts(api : Linkedin, search_term: str):
 
     start = 0
-    query_id = 'voyagerSearchDashClusters.522de52c041498ff853a0ecda602a0c0'
+    query_id = 'voyagerSearchDashClusters.c0bc75d67f90ded6f490bb210891a403'
     origin = 'FACETED_SEARCH'
-   
+
 
     search_data = []
 
@@ -85,7 +85,41 @@ def search_posts(api : Linkedin, search_term: str):
 
             data = get_required_data(each)
             search_data.append(data)
+        
+        all_id = []
 
+        for post in search_data:
+            formatted_id = quote(f'urn:li:fs_updateV2:({post["post_id"]},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)')
+            all_id.append(formatted_id)
+
+        result = ','.join(all_id)
+        print(result)
+
+        ids = f'List({result})'
+
+
+
+        new_info_url = f'/feed/updatesV2?commentsCount=0&ids={ids}&likesCount=0'
+
+        additional_data = api._fetch(uri=new_info_url)
+        
+        if additional_data.status_code == 200:
+            data_json = additional_data.json()
+            results = data_json['results']
+
+            for post in search_data:
+                post_id = post['post_id']
+                key = f'urn:li:fs_updateV2:({post_id},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)'
+                if key in results:
+                    social_detail = results[key].get("socialDetail", {})
+                    num_shared = social_detail.get("totalShares")
+                    post['shared'] = num_shared
+            
+
+        else:
+            print(additional_data.status_code)
+            print(additional_data.text)
+            print(additional_data.url)
 
         start = start + 10
         time.sleep(1)
@@ -94,9 +128,12 @@ def search_posts(api : Linkedin, search_term: str):
     return search_data
 
 
+
+
 def get_required_data(each):
     
     data = {}
+    
     item = each['item']['entityResult']
 
     data['post_id'] = item['trackingUrn']
@@ -127,7 +164,8 @@ def get_required_data(each):
     data['text'] = item['summary']['text']
 
     data['publisher'] = item['title']['text']
-    if data['publisher'] == 'Anshu Raj':
+    if data['publisher'] == 'Work From Home/ Fresher & Experience Jobs':
+        print('it here')
         with open('anshuraj.json', 'w') as file:
             json.dump(each, file, indent=4)
     data['publisher_url'] = item['actorNavigationUrl']
@@ -135,5 +173,4 @@ def get_required_data(each):
     # data["posted_at"] = convert_relative_time(item["secondarySubtitle"]['text'])
     
     return data
-    
-        
+
