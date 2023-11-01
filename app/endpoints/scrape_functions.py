@@ -164,10 +164,7 @@ def get_required_data(each):
     data['text'] = item['summary']['text']
 
     data['publisher'] = item['title']['text']
-    if data['publisher'] == 'Work From Home/ Fresher & Experience Jobs':
-        print('it here')
-        with open('anshuraj.json', 'w') as file:
-            json.dump(each, file, indent=4)
+    
     data['publisher_url'] = item['actorNavigationUrl']
 
     # data["posted_at"] = convert_relative_time(item["secondarySubtitle"]['text'])
