@@ -55,7 +55,7 @@ def get_reactions_details(api: Linkedin, post_urn: str):
 def search_posts(api, search_term):
     query_id = 'voyagerSearchDashClusters.c0bc75d67f90ded6f490bb210891a403'
     origin = 'FACETED_SEARCH'
-    end = 40
+    end = 70
 
     try:
         with open('data.json', 'r') as file:
@@ -78,6 +78,7 @@ def search_posts(api, search_term):
             break
         response_json = response.json()
 
+
         elements = response_json.get('data', {}).get('searchDashClustersByAll', {}).get('elements', {})
 
         for element in elements:
@@ -96,27 +97,25 @@ def search_posts(api, search_term):
         new_info_url = f'/feed/updatesV2?commentsCount=0&ids={ids}&likesCount=0'
         additional_data = api._fetch(uri=new_info_url)
 
-        if additional_data.status_code == 200:
-            data_json = additional_data.json()
-            results = data_json['results']
-
-            for post in search_data['data']:
-                post_id = post['post_id']
-                key = f'urn:li:fs_updateV2:({post_id},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)'
-                if key in results:
-                    social_detail = results[key].get("socialDetail", {})
-                    num_shared = social_detail.get("totalShares")
-                    post['shared'] = num_shared
-
-        else:
+        if additional_data.status_code != 200:
+            print('additional data could not be extracted')
             print(additional_data.status_code)
             print(additional_data.text)
             print(additional_data.url)
+            break
+
+        data_json = additional_data.json()
+        results = data_json['results']
+
+        for post in search_data['data']:
+            post_id = post['post_id']
+            key = f'urn:li:fs_updateV2:({post_id},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)'
+            if key in results:
+                social_detail = results[key].get("socialDetail", {})
+                num_shared = social_detail.get("totalShares")
+                post['shared'] = num_shared
 
         search_data['latest_scraped_page'] = start + 10
-
-        with open('data.json', 'w') as file:
-            json.dump(search_data, file, indent=4)
 
         time.sleep(1)
 
