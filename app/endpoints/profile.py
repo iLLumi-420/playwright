@@ -58,7 +58,7 @@ data = {
     'activities': activities
 }
 
-with open('profile_data.json', 'w') as file:
+with open('linkedin_profile_data.json', 'w') as file:
     json.dump(data, file, indent=4)
 
 
