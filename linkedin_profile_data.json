@@ -1,39 +1,150 @@
 {
-    "name": "Jack Welch",
-    "desc": "Executive Chairman, The Jack Welch Management Institute",
+    "name": "Bren\u00e9 Brown",
+    "desc": "University of Houston + University of Texas at Austin | Researcher. Storyteller. Courage-builder.",
     "address": "New York, New York, United States",
-    "followers": "7M followers",
-    "connection": "500+ connections",
-    "about": "Jack Welch is one of the world's most respected and celebrated CEOs, known for his unmatched track record of success, enormous love of people, fierce passion for winning, and unbridled desire to change the world for the better using his unique management practices, which are collectively called The Welch Way.In his 21 years as CEO, Jack transformed GE into the world's most admired and successful company with his innovative management techniques. Revenues grew five-fold from $25 billion to $130 billion, income grew ten-fold, from $1.5 billion to $15 billion, and the company's market capitalization had a 30-fold increase of more than $400 billion. His achievements are considered epic, and as a result, thousands of companies around the world have adopted the Welch Way.After retiring from GE in 2001, Jack Welch has only become more active in business. He has written three best-selling business books, Jack: Straight from the Gut, Winning, and The Real Life MBA. He actively participates in managing numerous companies as part of a private equity group, and for four years wrote an immensely popular weekly column for BusinessWeek magazine. He is a fixture on TV as a popular business commentator.Jack has always been defined by his zealous love of teaching and commitment to building leaders. At GE, he created the world's best corporate training center and regularly taught there himself. More recently, he taught a popular course as a visiting professor at MIT's Sloan School of Management.In 2010, Jack founded the Jack Welch Management Institute, a business school that offers executive education and management training. Jack is intimately involved in every aspect of the Institute. As Executive Chairman, he hosts video conferences with students, appears in exclusive videos about current business events and is deeply engaged in the development of the program's curriculum.",
+    "followers": 10000000,
+    "connection": 500,
+    "about": "Arianna Huffington is the founder and CEO of Thrive, the founder of The Huffington Post, and the author of 15 books, including \"Thrive\" and \"The Sleep Revolution.\" In 2016, she launched Thrive, a leading behavior change tech company with the mission of changing the way we work and live by ending the collective delusion that burnout is the price we must pay for success.She has been named to Time Magazine's list of the world\u2019s 100 most influential people and the Forbes Most Powerful Women list. Originally from Greece, she moved to England when she was 16 and graduated from Cambridge University with an M.A. in economics. At 21, she became president of the famed debating society, the Cambridge Union.She serves on numerous boards, including Onex and The B Team.Her last two books, \"Thrive: The Third Metric to Redefining Success and Creating a Life of Well-Being,\" \"Wisdom, and Wonder and The Sleep Revolution: Transforming Your Life, One Night At A Time,\" both became instant international bestsellers. Most recently, she wrote the foreword to Thrive's first book \"Your Time to Thrive: End Burnout, Increase Well-being, and Unlock Your Full Potential with the New Science of Microsteps.\"",
+    "experience": [
+        {
+            "position": "Founder and CEO",
+            "company": "Thrive Global",
+            "link": "https://www.linkedin.com/company/thrive-global?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/thrive-global?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
+            "time": "7 years 3 months"
+        },
+        {
+            "position": "President and Editor-in-Chief",
+            "company": "The Huffington Post Media Group",
+            "link": "https://www.linkedin.com/company/huffpost?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/huffpost?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
+            "time": "11 years 4 months"
+        }
+    ],
     "articles": [
         {
-            "title": "No More Eyerolls Please, Thank You Very Much",
-            "date": "Oct 15, 2018",
-            "link": "https://www.linkedin.com/pulse/more-eyerolls-please-thank-you-very-much-jack-welch?trk=public_profile_article_view <view-source:https://www.linkedin.com/pulse/more-eyerolls-please-thank-you-very-much-jack-welch?trk=public_profile_article_view>"
+            "title": "Confronting Bias: Thriving Across Our Differences",
+            "date": "765,584 viewers",
+            "link": "https://www.linkedin.com/learning/confronting-bias-thriving-across-our-differences?trk=public_profile <view-source:https://www.linkedin.com/learning/confronting-bias-thriving-across-our-differences?trk=public_profile>"
         },
         {
-            "title": "So Many Leaders Get This Wrong",
-            "date": "Jun 28, 2018",
-            "link": "https://www.linkedin.com/pulse/so-many-leaders-get-wrong-jack-welch?trk=public_profile_article_view <view-source:https://www.linkedin.com/pulse/so-many-leaders-get-wrong-jack-welch?trk=public_profile_article_view>"
-        },
-        {
-            "title": "'Rank-and-Yank'? That's Not How It's Done",
-            "date": "Apr 12, 2018",
-            "link": "https://www.linkedin.com/pulse/rank-and-yank-thats-how-its-done-jack-welch?trk=public_profile_article_view <view-source:https://www.linkedin.com/pulse/rank-and-yank-thats-how-its-done-jack-welch?trk=public_profile_article_view>"
+            "title": "Thriving @ Work: Leveraging the Connection between Well-Being and Productivity",
+            "date": "183,072 viewers",
+            "link": "https://www.linkedin.com/learning/thriving-work-leveraging-the-connection-between-well-being-and-productivity?trk=public_profile <view-source:https://www.linkedin.com/learning/thriving-work-leveraging-the-connection-between-well-being-and-productivity?trk=public_profile>"
         }
     ],
     "activities": [
         {
-            "title": "After three years of studying at JWMI, I received my Master\u2019s degree in the mail today. This journey is one of the greatest educational experiences I\u2026",
-            "link": "https://www.linkedin.com/posts/wcollado_after-three-years-of-studying-at-jwmi-i-activity-6634642983184592896-evta?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/wcollado_after-three-years-of-studying-at-jwmi-i-activity-6634642983184592896-evta?trk=public_profile_like_view>"
+            "title": "\ud83d\udcad The Next Frontier in Music + Health: On My Mind",
+            "link": "https://www.linkedin.com/pulse/next-frontier-music-health-my-mind-arianna-huffington?trk=public_profile_article_view <view-source:https://www.linkedin.com/pulse/next-frontier-music-health-my-mind-arianna-huffington?trk=public_profile_article_view>"
         },
         {
-            "title": "Are you working for the right person? Ask yourself one question- is your career a big deal to them? If not, move on quickly. \n\n#career\u2026",
-            "link": "https://www.linkedin.com/posts/johnfwelch_jack-welch-what-makes-a-great-boss-generosity-activity-6635916205561573376-XT3q?trk=public_profile_share_view <view-source:https://www.linkedin.com/posts/johnfwelch_jack-welch-what-makes-a-great-boss-generosity-activity-6635916205561573376-XT3q?trk=public_profile_share_view>"
+            "title": "Behavior Is a Miracle Drug for Our Health",
+            "link": "https://www.linkedin.com/pulse/behavior-miracle-drug-our-health-arianna-huffington?trk=public_profile_article_view <view-source:https://www.linkedin.com/pulse/behavior-miracle-drug-our-health-arianna-huffington?trk=public_profile_article_view>"
         },
         {
-            "title": "No one should have a job that doesn't get them jazzed to get up in the morning. As a leader... what do you do to make work\u2026",
-            "link": "https://www.linkedin.com/posts/johnfwelch_jack-welch-work-is-fun-activity-6633727526340481024-KBzY?trk=public_profile_share_view <view-source:https://www.linkedin.com/posts/johnfwelch_jack-welch-work-is-fun-activity-6633727526340481024-KBzY?trk=public_profile_share_view>"
+            "title": "Sleep in the Zeitgeist",
+            "link": "https://www.linkedin.com/pulse/sleep-zeitgeist-arianna-huffington?trk=public_profile_article_view <view-source:https://www.linkedin.com/pulse/sleep-zeitgeist-arianna-huffington?trk=public_profile_article_view>"
+        }
+    ],
+    "sidebar_profiles": [
+        {
+            "name": "Sara Blakely",
+            "desc": "Founder of SPANX",
+            "link": "https://www.linkedin.com/in/sarablakely27?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/sarablakely27?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Richard Branson",
+            "desc": "Founder at Virgin Group",
+            "link": "https://www.linkedin.com/in/rbranson?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/rbranson?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Jessica Alba",
+            "desc": "Founder of The Honest Company",
+            "link": "https://www.linkedin.com/in/jessica-alba?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/jessica-alba?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Satya Nadella",
+            "desc": "Chairman and CEO at Microsoft",
+            "link": "https://www.linkedin.com/in/satyanadella?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/satyanadella?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Tia Barr",
+            "desc": "CEO/ Founder Lucky Barr Productions LLC.",
+            "link": "https://www.linkedin.com/in/tiabarr?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/tiabarr?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Bill Gates",
+            "desc": "Co-chair, Bill & Melinda Gates Foundation",
+            "link": "https://www.linkedin.com/in/williamhgates?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/williamhgates?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Jeff Weiner",
+            "desc": "Executive Chairman at LinkedIn / Founding Partner Next Play Ventures",
+            "link": "https://www.linkedin.com/in/jeffweiner08?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/jeffweiner08?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Ryan Reynolds",
+            "desc": "Part-Time Actor, Business Owner",
+            "link": "https://www.linkedin.com/in/vancityreynolds?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/vancityreynolds?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Daymond John",
+            "desc": "CEO of FUBU and The Shark Group, TV Personality on ABC Shark Tank, Public Speaker",
+            "link": "https://www.linkedin.com/in/daymondjohn?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/daymondjohn?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Simon Sinek",
+            "desc": "Author and Founder of The Optimism Company",
+            "link": "https://www.linkedin.com/in/simonsinek?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/simonsinek?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Robert Downey Jr.",
+            "desc": "Founder, FootPrint Coalition and Co-founder, Team Downey",
+            "link": "https://www.linkedin.com/in/robert-downey-jr-ab6703215?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/robert-downey-jr-ab6703215?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Tony Robbins",
+            "desc": "#1 New York Times best-selling author, life and business strategist, philanthropist, entrepreneur",
+            "link": "https://www.linkedin.com/in/officialtonyrobbins?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/officialtonyrobbins?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "David Solomon",
+            "desc": "Chairman & CEO at Goldman Sachs",
+            "link": "https://www.linkedin.com/in/david-m-solomon?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/david-m-solomon?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Mike Bloomberg",
+            "desc": "Entrepreneur, philanthropist, UN Secretary-General's Special Envoy for Climate Ambition & Solutions, WHO Global Ambassador for Noncommunicable Diseases and Injuries, mayor of NYC, father, grandfather, and data nerd.",
+            "link": "https://www.linkedin.com/in/mikebloomberg?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/mikebloomberg?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Deepak Chopra MD (official)",
+            "desc": "Founder at Deepak Chopra LLC",
+            "link": "https://www.linkedin.com/in/deepakchopra?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/deepakchopra?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Larry Fink",
+            "desc": "Chairman and CEO at BlackRock",
+            "link": "https://www.linkedin.com/in/laurencefink?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/laurencefink?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Ryan Roslansky",
+            "desc": "CEO at LinkedIn",
+            "link": "https://www.linkedin.com/in/ryanroslansky?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/ryanroslansky?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Jamie Dimon",
+            "desc": "Chairman and CEO of JPMorgan Chase & Co.",
+            "link": "https://www.linkedin.com/in/jamiedimon?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/jamiedimon?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Doug McMillon",
+            "desc": "President & CEO at Walmart Inc.",
+            "link": "https://www.linkedin.com/in/dougmcmillon?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/dougmcmillon?trk=public_profile_browsemap>"
+        },
+        {
+            "name": "Bren\u00e9 Brown",
+            "desc": "University of Houston + University of Texas at Austin | Researcher. Storyteller. Courage-builder.",
+            "link": "https://www.linkedin.com/in/brenebrown?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/brenebrown?trk=public_profile_browsemap>"
         }
     ]
 }

@@ -1,7 +1,21 @@
 from bs4 import BeautifulSoup
 import json
+import re
 
-with open('liprofile.html', 'r') as file:
+def convert_count(text):
+    strings = text.split()
+    result = re.match(r'\d+', strings[0])
+    print(result.group())
+    number = int(result.group())
+    if 'M' in strings[0]:
+        return number*1000000
+    elif 'K' in strings[0]:
+        return number*1000
+    else:
+        return number
+
+
+with open('new.html', 'r') as file:
     html = file.read()
 
 soup = BeautifulSoup(html, 'html.parser')
@@ -20,8 +34,25 @@ spans = top.find_all('span')
 followers = spans[0].get_text(strip=True)
 connections = spans[1].get_text(strip=True)
 
+
+followers_count = convert_count(followers)
+connections_count = convert_count(connections)
+
+
 summary_section = soup.find('section', class_='summary')
 about = return_text(summary_section, 'core-section-container__content')
+
+# activities_setion = soup.find_all('section', class_='activities')
+
+# sections = {}
+# for section in activities_setion:
+#     section_title = section.find('h2', class_='core-section-container__title section-title')
+
+#     section[section_title] = []
+#     li_list = section.find('li')
+#     for li in li_list:
+#         title = li.find('h3', class_='base-main-card__title').get_text(strip=True)
+#         link = li.find('a')['href']
 
 articles_section = soup.find_all('section', class_='activities')
 
@@ -31,35 +62,65 @@ articles = []
 for li in articles_li:
     title = return_text(li, 'base-main-card__title')
     date = li.find('span', class_='base-main-card__metadata-item').get_text(strip=True)
-    link = li.find('a', class_='base-card')['href']
+    link = li.find('a')['href']
     
     articles.append({'title':title,'date':date,'link':link})
 
 
-
 activities_li = articles_section[1].find_all('li')
-print(activities_li[0])
+
 
 activities = []
 for li in activities_li:
     title = return_text(li, 'base-main-card__title')
-    link = li.find('a', class_='base-card__full-link')['href']
+    link = li.find('a')['href']
     
     activities.append({'title':title,'link':link})
 
+
+
+experience_section = soup.find('section', class_='experience')
+experience_lis = experience_section.find_all('li')
+
+experience = []
+for li in experience_lis:
+    position = li.find('h3', class_='profile-section-card__title').get_text(strip=True)
+    company = li.find('a', 'profile-section-card__subtitle-link')
+    company_name = company.get_text(strip=True)
+    link = company['href']
+    time_span = li.find('span', class_='date-range')
+    time = time_span.find('span').get_text(strip=True)
+
+    experience.append({'position':position,'company':company_name,'link':link,'time':time})
+
+
+related_profiles_div = soup.find('div', class_='aside-profiles-list')
+related_profile_li = related_profiles_div.find_all('li')
+
+sidebar_profiles = []
+for li in related_profile_li:
+    name = li.find('h3', class_='base-aside-card__title').get_text(strip=True)
+    desc = li.find('p', class_='base-aside-card__subtitle').get_text(strip=True)
+    link = li.find('a', class_='base-card')['href']
+    sidebar_profiles.append({'name':name,'desc':desc,'link':link})
+
+print(experience)
 data = {
     'name': name,
     'desc': desc,
     'address': address,
-    'followers': followers,
-    'connection': connections,
+    'followers': followers_count,
+    'connection': connections_count,
     'about': about,
+    'experience': experience,
     'articles': articles,
-    'activities': activities
+    'activities': activities,
+    'sidebar_profiles': sidebar_profiles
 }
 
 with open('linkedin_profile_data.json', 'w') as file:
     json.dump(data, file, indent=4)
+
 
 
 
