@@ -42,17 +42,6 @@ connections_count = convert_count(connections)
 summary_section = soup.find('section', class_='summary')
 about = return_text(summary_section, 'core-section-container__content')
 
-# activities_setion = soup.find_all('section', class_='activities')
-
-# sections = {}
-# for section in activities_setion:
-#     section_title = section.find('h2', class_='core-section-container__title section-title')
-
-#     section[section_title] = []
-#     li_list = section.find('li')
-#     for li in li_list:
-#         title = li.find('h3', class_='base-main-card__title').get_text(strip=True)
-#         link = li.find('a')['href']
 
 articles_section = soup.find_all('section', class_='activities')
 
@@ -93,6 +82,21 @@ for li in experience_lis:
 
     experience.append({'position':position,'company':company_name,'link':link,'time':time})
 
+education_section = soup.find('section', class_='education')
+education_lis = education_section.find_all('li')
+
+education = []
+for li in education_lis:
+    institution_a = li.find('a', class_='profile-section-card__title-link')
+    institution = institution_a.get_text(strip=True)
+    link = institution_a['href']
+    info_spans = li.find_all('span', class_='education__item')
+    level = info_spans[0].get_text(strip=True)
+    degree = info_spans[1].get_text(strip=True)
+
+
+    education.append({'instituion':institution,'link':link,'level':level,'degree':degree})
+
 
 related_profiles_div = soup.find('div', class_='aside-profiles-list')
 related_profile_li = related_profiles_div.find_all('li')
@@ -113,6 +117,7 @@ data = {
     'connection': connections_count,
     'about': about,
     'experience': experience,
+    'education': education,
     'articles': articles,
     'activities': activities,
     'sidebar_profiles': sidebar_profiles

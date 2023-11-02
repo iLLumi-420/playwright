@@ -19,6 +19,14 @@
             "time": "11 years 4 months"
         }
     ],
+    "education": [
+        {
+            "instituion": "Cambridge University",
+            "link": "https://www.linkedin.com/school/university-of-cambridge/?trk=public_profile_school <view-source:https://www.linkedin.com/school/university-of-cambridge/?trk=public_profile_school>",
+            "level": "Master of Arts (M.A.)",
+            "degree": "Economics"
+        }
+    ],
     "articles": [
         {
             "title": "Confronting Bias: Thriving Across Our Differences",
