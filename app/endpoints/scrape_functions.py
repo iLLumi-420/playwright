@@ -50,18 +50,23 @@ def get_reactions_details(api: Linkedin, post_urn: str):
     return {'data':reactions_data, 'count':reaction_count}
 
 
-def search_posts(api : Linkedin, search_term: str):
 
-    start = 0
+
+def search_posts(api, search_term):
     query_id = 'voyagerSearchDashClusters.c0bc75d67f90ded6f490bb210891a403'
     origin = 'FACETED_SEARCH'
+    end = 40
 
-
-    search_data = []
+    try:
+        with open('data.json', 'r') as file:
+            search_data = json.load(file)
+    except FileNotFoundError:
+        search_data = {'data': [], 'latest_scraped_page': 0}
 
     while True:
+        start = search_data['latest_scraped_page']
 
-        if start == 20:
+        if start == end:
             break
 
         variables = f'(start:{start},origin:{origin},query:(keywords:{quote(search_term)},flagshipSearchIntent:SEARCH_SRP,queryParameters:List((key:datePosted,value:List(past-24h)),(key:resultType,value:List(CONTENT))),includeFiltersInResponse:false))'
@@ -73,54 +78,47 @@ def search_posts(api : Linkedin, search_term: str):
             break
         response_json = response.json()
 
-        elements = response_json.get('data', {}).get('searchDashClustersByAll',{}).get('elements',{})
-       
+        elements = response_json.get('data', {}).get('searchDashClustersByAll', {}).get('elements', {})
+
         for element in elements:
             items = element['items'] if len(element['items']) > 1 else None
             if items:
                 break
 
-
         for each in items:
-
             data = get_required_data(each)
-            search_data.append(data)
-        
-                
+            search_data['data'].append(data)
 
-        all_id = [quote(f'urn:li:fs_updateV2:({post["post_id"]},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)') for post in search_data[start:start+10]]
+        all_id = [quote(f'urn:li:fs_updateV2:({post["post_id"]},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)') for post in search_data['data'][start:start + 10]]
         result = ','.join(all_id)
         ids = f'List({result})'
 
-        
-
-
-
         new_info_url = f'/feed/updatesV2?commentsCount=0&ids={ids}&likesCount=0'
-
         additional_data = api._fetch(uri=new_info_url)
-        
+
         if additional_data.status_code == 200:
             data_json = additional_data.json()
             results = data_json['results']
 
-            for post in search_data:
+            for post in search_data['data']:
                 post_id = post['post_id']
                 key = f'urn:li:fs_updateV2:({post_id},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)'
                 if key in results:
                     social_detail = results[key].get("socialDetail", {})
                     num_shared = social_detail.get("totalShares")
                     post['shared'] = num_shared
-            
 
         else:
             print(additional_data.status_code)
             print(additional_data.text)
             print(additional_data.url)
 
-        start = start + 10
+        search_data['latest_scraped_page'] = start + 10
+
+        with open('data.json', 'w') as file:
+            json.dump(search_data, file, indent=4)
+
         time.sleep(1)
-        
 
     return search_data
 
