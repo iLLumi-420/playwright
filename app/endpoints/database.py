@@ -9,26 +9,48 @@ conn = psycopg2.connect(
 )
 cursor = conn.cursor()
 
-with open('./data.json', 'r') as f:
-    data = json.load(f)
+with open('./data.json', 'r') as file:
+    data = json.load(file)
 
-for item in data:
-    cursor.execute(
-        """
-        INSERT INTO linkedin_posts (comments_number, likes_number, post_urn, text, posted_by, company_name, company_url, post_hashtag)
-        VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
-        """,
-        (
-            item.get('comments_number'),
-            item.get('likes_number'),
-            item.get('post_urn'),
-            item.get('text'),
-            item.get('posted_by'),
-            item.get('company_name'),
-            item.get('company_url'),
-            item.get('post_hashtag')
-        )
-    )
+# cursor.execute("DROP TABLE linkedin_posts")
+# cursor.execute("""
+#     CREATE TABLE linkedin_posts (
+#             id SERIAL PRIMARY KEY,
+#             post_id VARCHAR(255),
+#             post_url VARCHAR(255),
+#             comments INTEGER,
+#             reactions INTEGER,
+#             reaction_type JSONB,
+#             hashtag VARCHAR(255),
+#             media VARCHAR(255),
+#             text TEXT,
+#             publisher VARCHAR(255),
+#             publisher_url VARCHAR(255),
+#             shared INTEGER
+#     )
+# """)
+
+# for item in data:
+#     cursor.execute(
+#         """
+#         INSERT INTO linkedin_posts (id, post_id, post_url, comments, reactions, reaction_type, hashtag, media, text, publisher, publisher_url, shared)
+#         VALUES (DEFAULT, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+#         """,
+#         (
+#             item.get('post_id'),
+#             item.get('post_url'),
+#             item.get('comments'),
+#             item.get('reactions'),
+#             json.dumps(item.get('reaction_type')),
+#             item.get('hashtag'),
+#             item.get('media'),
+#             item.get('text'),
+#             item.get('publisher'),
+#             item.get('publisher_url'),
+#             item.get('shared')
+#         )
+#     )
+
 
 conn.commit()
 

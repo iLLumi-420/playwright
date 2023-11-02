@@ -86,16 +86,13 @@ def search_posts(api : Linkedin, search_term: str):
             data = get_required_data(each)
             search_data.append(data)
         
-        all_id = []
+                
 
-        for post in search_data:
-            formatted_id = quote(f'urn:li:fs_updateV2:({post["post_id"]},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)')
-            all_id.append(formatted_id)
-
+        all_id = [quote(f'urn:li:fs_updateV2:({post["post_id"]},BLENDED_SEARCH_FEED,EMPTY,DEFAULT,false)') for post in search_data[start:start+10]]
         result = ','.join(all_id)
-        print(result)
-
         ids = f'List({result})'
+
+        
 
 
 
