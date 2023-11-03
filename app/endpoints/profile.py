@@ -3,16 +3,19 @@ import json
 import re
 from datetime import datetime
 
-def parse_month_year_date(date_str):
-    try:
-        date = datetime.strptime(date_str, '%b %Y')
-        return date.strftime('%Y/%m/%d')
-    except ValueError:
-        return None
+def parse_date(date_str):
+    formats = ['%b %Y', '%b %d, %Y', '%Y']
+    for date_format in formats:
+        try:
+            date = datetime.strptime(date_str, date_format)
+            return date.strftime('%Y/%m/%d')
+        except ValueError:
+            continue
+    return None
     
 def get_date():
     now = datetime.now()
-    date_string = now.strftime('%Y-%m-%d')
+    date_string = now.strftime('%Y/%m/%d')
     return date_string
 
 def text_to_number(text):
@@ -32,7 +35,6 @@ def duration_to_number(text):
     if text == 'less than a year':
         return 0
     split = text.split()
-    print(split)
     years, months = 0, 0
 
     if 'year' in split or 'years' in split:
@@ -107,11 +109,10 @@ def extract_data(filename):
             time_span = li.find('span', class_='date-range')
             if time_span:
                 dates = time_span.find_all('time')
-                print(len(dates))
                 
-                date1 = parse_month_year_date(dates[0].text)
+                date1 = parse_date(dates[0].text)
 
-                date2 = get_date() if len(dates) < 2 else parse_month_year_date(dates[1].text) 
+                date2 = get_date() if len(dates) < 2 else parse_date(dates[1].text) 
                 duration = time_span.find('span').get_text(strip=True)
                 duration = duration_to_number(duration)
             else:
@@ -199,8 +200,10 @@ def extract_data(filename):
                 subtitle = li.find('h4', class_='base-main-card__subtitle').get_text(strip=True)
                 subtitle = subtitle.split('By ')[1].strip()
                 metadata = li.find('span', class_='base-main-card__metadata-item').get_text(strip=True)
+                
+                date = parse_date(metadata)
 
-                sections['articles'].append({'link':link,'title':title,'author':subtitle,'date':metadata})
+                sections['articles'].append({'link':link,'title':title,'author':subtitle,'date':date})
 
         elif 'activity' in section_title.lower():
             sections['activities'] = []
@@ -240,7 +243,7 @@ def extract_data(filename):
             date = li.find('time')
             date = date.get_text(strip=True) if date else None
                 
-            date = parse_month_year_date(date)
+            date = parse_date(date)
             certification_id = li.find('div', 'certifications__credential-id')
             if certification_id:
                 certification_id = certification_id.get_text(strip=True)
