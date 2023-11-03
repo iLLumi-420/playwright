@@ -293,7 +293,7 @@ def extract_data(filename):
 
 if __name__=='__main__':
 
-    file = 'profile200.html'
+    file = 'profile101.html'
     data = extract_data(file)
     
 
