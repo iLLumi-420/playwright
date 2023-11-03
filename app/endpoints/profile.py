@@ -65,10 +65,9 @@ def extract_data(filename):
 
 
     summary_section = soup.find('section', class_='summary')
-    if summary_section:
-        about = return_text(summary_section, 'core-section-container__content')
-    else:
-        about = None
+    
+    about = return_text(summary_section, 'core-section-container__content') if summary_section else None
+   
 
     experience_section = soup.find('section', class_='experience')
     if experience_section:
@@ -147,7 +146,6 @@ def extract_data(filename):
 
 
 
-
     sections_element = soup.find_all('section', class_='activities')
 
     sections = {}
@@ -165,7 +163,6 @@ def extract_data(filename):
                 metadata = li.find('span', class_='base-main-card__metadata-item').get_text(strip=True)
                 metadata = text_to_number(metadata)
 
-
                 sections['courses'].append({'link':link,'course_name':title,'author':subtitle,'viewers':metadata})
         
         elif 'articles' in section_title.lower():
@@ -176,8 +173,6 @@ def extract_data(filename):
                 subtitle = li.find('h4', class_='base-main-card__subtitle').get_text(strip=True)
                 subtitle = subtitle.split('By ')[1].strip()
                 metadata = li.find('span', class_='base-main-card__metadata-item').get_text(strip=True)
-            
-
 
                 sections['articles'].append({'link':link,'title':title,'author':subtitle,'date':metadata})
 
@@ -197,10 +192,9 @@ def extract_data(filename):
                 title = li.find('h3', class_='base-main-card__title').get_text(strip=True)
                 subtitle = li.find('h4', class_='base-main-card__subtitle').get_text(strip=True)
                 metadata = li.find('span', class_='base-main-card__metadata-item')
-                if metadata:
-                    metadata = metadata.get_text(strip=True)
-                else:
-                    metadata = None
+               
+                metadata = metadata.get_text(strip=True) if metadata else None
+           
 
 
                 sections[section_title].append({'link':link,'title':title,'subtitle':subtitle,'metadata':metadata})
