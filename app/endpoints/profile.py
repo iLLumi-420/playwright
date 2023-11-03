@@ -1,6 +1,19 @@
 from bs4 import BeautifulSoup
 import json
 import re
+from datetime import datetime
+
+def parse_month_year_date(date_str):
+    try:
+        date = datetime.strptime(date_str, '%b %Y')
+        return date.strftime('%Y/%m/%d')
+    except ValueError:
+        return None
+    
+def get_date():
+    now = datetime.now()
+    date_string = now.strftime('%Y-%m-%d')
+    return date_string
 
 def text_to_number(text):
     text = text.replace(',', '')
@@ -32,6 +45,12 @@ def duration_to_number(text):
 
     decimal_value = years + months / 12.0
     return decimal_value
+
+def seperate_actor_and_action(text):
+    text = text.split('by')
+    action = text[0].strip()
+    actor = text[1].strip()
+    return action, actor
 
     
 def return_text(element, classname):
@@ -88,14 +107,19 @@ def extract_data(filename):
             time_span = li.find('span', class_='date-range')
             if time_span:
                 dates = time_span.find_all('time')
-                range = f'{dates[0].text}-{dates[1].text}' if len(dates)>1 else f'{dates[0].text}-Present'
+                print(len(dates))
+                
+                date1 = parse_month_year_date(dates[0].text)
+
+                date2 = get_date() if len(dates) < 2 else parse_month_year_date(dates[1].text) 
                 duration = time_span.find('span').get_text(strip=True)
                 duration = duration_to_number(duration)
             else:
-                range = None
+                date1 = None
+                date2 = None
                 duration = None
 
-            experience.append({'position':position,'company':company_name,'link':link,'date':range,'time_in_years':duration})
+            experience.append({'position':position,'company':company_name,'link':link,'date':f'{date1}-{date2}','time_in_years':duration})
     else:
         experience = []
 
@@ -184,8 +208,9 @@ def extract_data(filename):
                 link = li.find('a')['href']
                 title = li.find('h3', class_='base-main-card__title').get_text(strip=True)
                 subtitle = li.find('h4', class_='base-main-card__subtitle').get_text(strip=True)
+                action, actor = seperate_actor_and_action(subtitle)
 
-                sections['activities'].append({'link':link,'title':title,'subtitle':subtitle})
+                sections['activities'].append({'link':link,'title':title,'action':action, 'actor':actor})
             
         else:
             sections[section_title] = []
@@ -214,6 +239,8 @@ def extract_data(filename):
             link = institution_a['href'] if institution_a else None
             date = li.find('time')
             date = date.get_text(strip=True) if date else None
+                
+            date = parse_month_year_date(date)
             certification_id = li.find('div', 'certifications__credential-id')
             if certification_id:
                 certification_id = certification_id.get_text(strip=True)
@@ -222,7 +249,22 @@ def extract_data(filename):
                 certification_id = None
 
             certifications.append({'title':title,'instituion':institution,'link':link,'date':date,'certification_id':certification_id})
+
+    
+    more_activities_section = soup.find('section', class_='recommended-content')
+    more_activities= []
+    if more_activities_section:
+        more_div = more_activities_section.find_all('div', class_='main-activity-card')
+        for li in more_div:
+            link = li.find('a')['href']
+            title = li.find('h3', class_='base-main-card__title').get_text(strip=True)
+            subtitle = li.find('h4', class_='base-main-card__subtitle').get_text(strip=True)
+
+            action, actor = seperate_actor_and_action(subtitle)
+
+            more_activities.append({'link':link,'title':title,'action':action, 'actor':actor})
         
+    
 
     data = {
         'name': name,
@@ -236,13 +278,13 @@ def extract_data(filename):
         'sections_data': sections,
         'sidebar_profiles': sidebar_profiles,
         'similar_profiles': similar_profiles,
-        'certfications': certifications
+        'certfications': certifications,
+        'more_activity': more_activities
     }
 
-    print(data)
 
     with open(f'linkedin_{filename.split(".")[0]}_data.json', 'w') as file:
-        json.dump(data, file, indent=4)
+        json.dump(data, file, default=str,indent=4)
 
     return data
     
@@ -251,7 +293,7 @@ def extract_data(filename):
 
 if __name__=='__main__':
 
-    file = 'profile1000.html'
+    file = 'profile200.html'
     data = extract_data(file)
     
 

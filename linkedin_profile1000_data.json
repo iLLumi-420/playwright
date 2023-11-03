@@ -97,17 +97,20 @@
             {
                 "link": "https://www.linkedin.com/posts/jon-silk-creative_oppenheimers-david-dastmalchian-twilight-activity-7125694087831113730-zzSD?trk=public_profile_share_view <view-source:https://www.linkedin.com/posts/jon-silk-creative_oppenheimers-david-dastmalchian-twilight-activity-7125694087831113730-zzSD?trk=public_profile_share_view>",
                 "title": "This amazing cast starts shooting in less than 2 weeks\u2026\n\nhttps://lnkd.in/dqQfMHUt",
-                "subtitle": "Shared byJon Silk"
+                "action": "Shared",
+                "actor": "Jon Silk"
             },
             {
                 "link": "https://www.linkedin.com/posts/christopher-ridenhour-bb028032_afm-concourse-sets-action-thriller-cabo-activity-7125522621252734977-ubXY?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/christopher-ridenhour-bb028032_afm-concourse-sets-action-thriller-cabo-activity-7125522621252734977-ubXY?trk=public_profile_like_view>",
                 "title": "Clients in the news... Dave McKenna! Working with my old pal Todd Berger \ud83d\udc4d",
-                "subtitle": "Liked byJon Silk"
+                "action": "Liked",
+                "actor": "Jon Silk"
             },
             {
                 "link": "https://www.linkedin.com/posts/beatricegl_calling-all-bss-alumnae-in-nyc-come-activity-7125573388290437120--26q?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/beatricegl_calling-all-bss-alumnae-in-nyc-come-activity-7125573388290437120--26q?trk=public_profile_like_view>",
                 "title": "\ud83d\udce3 Calling all BSS Alumnae in NYC!\n\nCome join me on Saturday, November 18 for an afternoon of culture, learning, exploring and eating on the Lower\u2026",
-                "subtitle": "Liked byJon Silk"
+                "action": "Liked",
+                "actor": "Jon Silk"
             }
         ]
     },
@@ -235,5 +238,31 @@
             "link": "https://www.linkedin.com/in/jon-silk-6a900214?trk=public_profile_samename-profile <view-source:https://www.linkedin.com/in/jon-silk-6a900214?trk=public_profile_samename-profile>"
         }
     ],
-    "certfications": []
+    "certfications": [],
+    "more_activity": [
+        {
+            "link": "https://www.linkedin.com/posts/philhawkinsdirector_afm-naomie-harris-gwendoline-christie-team-activity-7125455847924600834-Ne8q?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/philhawkinsdirector_afm-naomie-harris-gwendoline-christie-team-activity-7125455847924600834-Ne8q?trk=public_profile_like_view>",
+            "title": "Cast reveal! \ud83c\udf89 Still having to pinch myself that I got to direct Oscar-nominated Naomie Harris, the wonderful Gwendoline Christie, Harry Potter\u2019s\u2026",
+            "action": "Liked",
+            "actor": "Jon Silk"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/alexsegura_ill-be-at-motor-city-comic-con-in-a-few-activity-7125301362854096896-L0fk?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/alexsegura_ill-be-at-motor-city-comic-con-in-a-few-activity-7125301362854096896-L0fk?trk=public_profile_like_view>",
+            "title": "I'll be at Motor City Comic Con in a few weeks! I'll be selling and signing books, including SECRET IDENTITY, ARA\u00d1A/SPIDER-MAN 2099: DARK TOMORROW\u2026",
+            "action": "Liked",
+            "actor": "Jon Silk"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/matthewcohan_blizzard-lightboxexpo-activity-7123365852749434882-t3gD?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/matthewcohan_blizzard-lightboxexpo-activity-7123365852749434882-t3gD?trk=public_profile_like_view>",
+            "title": "I'm looking forward to moderating this panel on developing story within SFD, featuring some extraordinary talent onstage. If you're planning to be at\u2026",
+            "action": "Liked",
+            "actor": "Jon Silk"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/matthewcohan_le-sserafim-%EB%A5%B4%EC%84%B8%EB%9D%BC%ED%95%8C-perfect-night-official-activity-7123783515812372480-yPL_?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/matthewcohan_le-sserafim-%EB%A5%B4%EC%84%B8%EB%9D%BC%ED%95%8C-perfect-night-official-activity-7123783515812372480-yPL_?trk=public_profile_like_view>",
+            "title": "Awesome work, Ben, and congrats to all involved! (Sydney King, bucket list for you as well?)",
+            "action": "Liked",
+            "actor": "Jon Silk"
+        }
+    ]
 }

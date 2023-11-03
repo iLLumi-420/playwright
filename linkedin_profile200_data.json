@@ -1,6 +1,6 @@
 {
-    "name": "Zeno Edwards",
-    "desc": null,
+    "name": "Michael Karr",
+    "desc": "Senior Network Engineer at Lionbridge",
     "address": "San Antonio, Texas Metropolitan Area",
     "followers": 75,
     "connection": 62,
@@ -10,70 +10,70 @@
             "position": "Adjunct Professor",
             "company": "Schreiner University",
             "link": "https://www.linkedin.com/company/schreiner-university?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/schreiner-university?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "date": "Dec 2020-Present",
+            "date": "2020/12/01-2023-11-03",
             "time_in_years": 3.0
         },
         {
             "position": "Director Member Digital Communications",
             "company": "USAA",
             "link": "https://www.linkedin.com/company/usaa?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/usaa?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "date": "Jun 2016-Mar 2023",
+            "date": "2016/06/01-2023/03/01",
             "time_in_years": 6.833333333333333
         },
         {
             "position": "Director Member Digital Communications",
             "company": "USAA",
             "link": "https://www.linkedin.com/company/usaa?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/usaa?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "date": "Jun 2016-Mar 2023",
+            "date": "2016/06/01-2023/03/01",
             "time_in_years": 6.833333333333333
         },
         {
             "position": "Lead Business Intelligence Advisor",
             "company": "USAA",
             "link": null,
-            "date": "Mar 2012-Jun 2016",
+            "date": "2012/03/01-2016/06/01",
             "time_in_years": 4.333333333333333
         },
         {
             "position": "Principle Military Analyst",
             "company": "ARINC. INC",
             "link": null,
-            "date": "Jan 2010-Mar 2012",
+            "date": "2010/01/01-2012/03/01",
             "time_in_years": 2.25
         },
         {
             "position": "Consulting Engineer",
             "company": "Systems Studies and Simulations",
             "link": null,
-            "date": "Dec 2008-2009",
+            "date": "2008/12/01-None",
             "time_in_years": 1.0
         },
         {
             "position": "Senior Manager",
             "company": "Accenture",
             "link": "https://www.linkedin.com/company/accenture?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/accenture?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "date": "Jun 2007-Apr 2008",
+            "date": "2007/06/01-2008/04/01",
             "time_in_years": 0.9166666666666666
         },
         {
             "position": "Associate Partner",
             "company": "IBM",
             "link": "https://www.linkedin.com/company/ibm?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/ibm?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "date": "Apr 2005-May 2007",
+            "date": "2005/04/01-2007/05/01",
             "time_in_years": 2.1666666666666665
         },
         {
             "position": "Senior Consultant",
             "company": "Caterpillar",
             "link": null,
-            "date": "2002-2005",
+            "date": "None-None",
             "time_in_years": 3.0
         },
         {
             "position": "Squadron Commander",
             "company": "United States Army",
             "link": "https://www.linkedin.com/company/us-army?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/us-army?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "date": "May 2000-Jun 2002",
+            "date": "2000/05/01-2002/06/01",
             "time_in_years": 2.1666666666666665
         }
     ],
@@ -108,17 +108,20 @@
             {
                 "link": "https://www.linkedin.com/posts/davidtmcaleer_medalofhonor-thomaspayne-usarmy-activity-7122524632233955328-A6_R?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/davidtmcaleer_medalofhonor-thomaspayne-usarmy-activity-7122524632233955328-A6_R?trk=public_profile_like_view>",
                 "title": "On October 22, 2015, SGM Thomas Payne was part of a daring nighttime hostage rescue in the northern town of Hawija, Iraq. Their mission: to free\u2026",
-                "subtitle": "Liked byMichael Karr"
+                "action": "Liked",
+                "actor": "Michael Karr"
             },
             {
                 "link": "https://www.linkedin.com/posts/marines_a-message-to-the-force-activity-7124894114285854720-9wVB?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/marines_a-message-to-the-force-activity-7124894114285854720-9wVB?trk=public_profile_like_view>",
                 "title": "A Message to the Force from the Sergeant Major of the Marine Corps Carlos A. Ruiz.",
-                "subtitle": "Liked byMichael Karr"
+                "action": "Liked",
+                "actor": "Michael Karr"
             },
             {
                 "link": "https://www.linkedin.com/posts/dan-meador-3779b85_mcaa-semperfidelis-activity-7124022346914373632-oykL?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/dan-meador-3779b85_mcaa-semperfidelis-activity-7124022346914373632-oykL?trk=public_profile_like_view>",
                 "title": "Check out the Marine Corps Aviation Association picture of the week!\n\nATLANTIC OCEAN (Oct. 11, 2023) U.S. Marine Corps test pilot Maj. Paul Gucwa\u2026",
-                "subtitle": "Liked byMichael Karr"
+                "action": "Liked",
+                "actor": "Michael Karr"
             }
         ]
     },
@@ -224,76 +227,160 @@
             "link": "https://www.linkedin.com/in/zeno-edwards-0a3a021?trk=public_profile_browsemap <view-source:https://www.linkedin.com/in/zeno-edwards-0a3a021?trk=public_profile_browsemap>"
         }
     ],
+    "similar_profiles": [
+        {
+            "name": "Michael Karr",
+            "desc": "co-founder & developer \u00b7 solo.to",
+            "link": "https://www.linkedin.com/in/michael-karr?trk=public_profile_samename-profile <view-source:https://www.linkedin.com/in/michael-karr?trk=public_profile_samename-profile>"
+        },
+        {
+            "name": "Michael Karr",
+            "desc": "Software Engineer at Anduril Industries",
+            "link": "https://www.linkedin.com/in/michaelkarr1?trk=public_profile_samename-profile <view-source:https://www.linkedin.com/in/michaelkarr1?trk=public_profile_samename-profile>"
+        },
+        {
+            "name": "Michael Karr",
+            "desc": "Transportation Professional | Business Development | Strategic Direction",
+            "link": "https://www.linkedin.com/in/michael-karr21?trk=public_profile_samename-profile <view-source:https://www.linkedin.com/in/michael-karr21?trk=public_profile_samename-profile>"
+        },
+        {
+            "name": "Michael Karr",
+            "desc": "Senior Network Engineer at Lionbridge",
+            "link": "https://www.linkedin.com/in/michael-karr-241186171?trk=public_profile_samename-profile <view-source:https://www.linkedin.com/in/michael-karr-241186171?trk=public_profile_samename-profile>"
+        }
+    ],
     "certfications": [
         {
             "title": "Machine Learning and AI Foundations: Causal Inference and Modeling",
             "instituion": null,
             "link": null,
-            "date": "Aug 2022",
+            "date": "2022/08/01",
             "certification_id": "AUg5n_wI2SAe-9SsGlmGvsm6htd3"
         },
         {
             "title": "Artificial Intelligence and Business Strategy",
             "instituion": "Artificial Intelligence and Business Strategy",
             "link": "https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Flearning%2Fcertificates%2Ff79f96a76f2a1aeeeae61de3a0e372f1cab292f96e309031d488465dc72ec92f&urlhash=laox&trk=public_profile_certification-title <view-source:https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Flearning%2Fcertificates%2Ff79f96a76f2a1aeeeae61de3a0e372f1cab292f96e309031d488465dc72ec92f&urlhash=laox&trk=public_profile_certification-title>",
-            "date": "Jul 2022",
+            "date": "2022/07/01",
             "certification_id": null
         },
         {
             "title": "Artificial Intelligence and Machine Learning",
             "instituion": null,
             "link": null,
-            "date": "Jul 2022",
+            "date": "2022/07/01",
             "certification_id": null
         },
         {
             "title": "Strategic Thinking",
             "instituion": "Strategic Thinking",
             "link": "https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Flearning%2Fcertificates%2F234316a5cbf1eb551b8d8f903d5430323316c070d180df12676ca656f1df236f&urlhash=QU3K&trk=public_profile_certification-title <view-source:https://www.linkedin.com/redir/redirect?url=https%3A%2F%2Fwww%2Elinkedin%2Ecom%2Flearning%2Fcertificates%2F234316a5cbf1eb551b8d8f903d5430323316c070d180df12676ca656f1df236f&urlhash=QU3K&trk=public_profile_certification-title>",
-            "date": "Jul 2022",
+            "date": "2022/07/01",
             "certification_id": null
         },
         {
             "title": "Certified Regulatory Vendor Program Manager",
             "instituion": null,
             "link": null,
-            "date": "May 2022",
+            "date": "2022/05/01",
             "certification_id": "CEI-CRVPM-B03013"
         },
         {
             "title": "SAFe 4 Practitioner Certification",
             "instituion": null,
             "link": null,
-            "date": "Sep 2019",
+            "date": "2019/09/01",
             "certification_id": "47671593-4727"
         },
         {
             "title": "Executive Course Fundamentals of Supply Chain Management",
             "instituion": null,
             "link": null,
-            "date": "Jan 2005",
+            "date": "2005/01/01",
             "certification_id": null
         },
         {
             "title": "6 Sigma Green Belt",
             "instituion": null,
             "link": null,
-            "date": "Nov 2004",
+            "date": "2004/11/01",
             "certification_id": null
         },
         {
             "title": "United States Army Aviation Flight School",
             "instituion": null,
             "link": null,
-            "date": "Jun 1985",
+            "date": "1985/06/01",
             "certification_id": null
         },
         {
             "title": "Collaborative Institutional Training Initiative",
             "instituion": "Collaborative Institutional Training Initiative",
             "link": "https://www.linkedin.com/redir/redirect?url=http%3A%2F%2Fwww%2Eciciprogram%2Eorg%2Fverify%2F%3Fw7b376b9d-af4b-4528-931d-e0c17599e16d-30584991&urlhash=ZOX1&trk=public_profile_certification-title <view-source:https://www.linkedin.com/redir/redirect?url=http%3A%2F%2Fwww%2Eciciprogram%2Eorg%2Fverify%2F%3Fw7b376b9d-af4b-4528-931d-e0c17599e16d-30584991&urlhash=ZOX1&trk=public_profile_certification-title>",
-            "date": "Sep 2019",
+            "date": "2019/09/01",
             "certification_id": "30584991"
+        }
+    ],
+    "more_activity": [
+        {
+            "link": "https://www.linkedin.com/posts/bespoke-partners_we-couldnt-be-more-thrilled-for-the-team-activity-7121168449233383425-67Lf?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/bespoke-partners_we-couldnt-be-more-thrilled-for-the-team-activity-7121168449233383425-67Lf?trk=public_profile_like_view>",
+            "title": "We couldn't be more thrilled for the team at PakEnergy!\n\nPakEnergy just announced three new strategic hires to their executive and senior leadership\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/james-garman-12295813_good-job-amazon-activity-7121929739526656000-FJQ7?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/james-garman-12295813_good-job-amazon-activity-7121929739526656000-FJQ7?trk=public_profile_like_view>",
+            "title": "Good job Amazon!",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/naval-air-warfare-center-aircraft-division-nawcad-_navy-dod-nasa-activity-7120164076005072896-bB9w?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/naval-air-warfare-center-aircraft-division-nawcad-_navy-dod-nasa-activity-7120164076005072896-bB9w?trk=public_profile_like_view>",
+            "title": "In case you missed it | Secretary of the US Navy Carlos Del Toro posthumously promoted naval test pilot William \u201cWillie\u201d C. McCool to the rank of\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/d-dewitt_adaptive-adaptiveshoes-luckybrand-activity-7120066920590008320-R39d?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/d-dewitt_adaptive-adaptiveshoes-luckybrand-activity-7120066920590008320-R39d?trk=public_profile_like_view>",
+            "title": "This is just a pair of shoes and a poorly lit picture, right? WRONG! \u274c\n\nThis is me excited that Lucky Brand  designed a pair of booties with zippers\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/stuart-klearman-4b98971a0_honoring-the-1st-us-army-black-female-pilot-activity-7120007116240625664-5kvr?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/stuart-klearman-4b98971a0_honoring-the-1st-us-army-black-female-pilot-activity-7120007116240625664-5kvr?trk=public_profile_like_view>",
+            "title": "Honoring the 1st US Army Black Female Pilot - Millie Bailey. She served in WWII ... *SALUTE*",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/ausaorg_retired-gen-shinseki-receives-marshall-medal-activity-7118213408360947712-wreU?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/ausaorg_retired-gen-shinseki-receives-marshall-medal-activity-7118213408360947712-wreU?trk=public_profile_like_view>",
+            "title": "The Association of the U.S. Army awarded its highest honor for selfless service to retired Gen. Eric Shinseki, a former Army chief of staff and\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/david-yuzuk-148a102b_rip-hero-vietnam-war-us-army-medal-activity-7118258265095843840-4Y3G?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/david-yuzuk-148a102b_rip-hero-vietnam-war-us-army-medal-activity-7118258265095843840-4Y3G?trk=public_profile_like_view>",
+            "title": "RIP Hero...\nVietnam War - U.S. Army Medal of Honor Recipient Green Beret Sgt. Fred W. Zabitosky of the 5th SF Group \n\nSergeant First Class Zabitosky,\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/john-paul-smith-ph-d-b59a41125_elk-city-native-promoted-to-colonel-keco-activity-7115466584420188160-Ftpe?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/john-paul-smith-ph-d-b59a41125_elk-city-native-promoted-to-colonel-keco-activity-7115466584420188160-Ftpe?trk=public_profile_like_view>",
+            "title": "Proud to Serve God and Country. There is absolutely nothing on earth like enjoying the work you do and loving the people you serve! Ready to use this\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/achickinthecockpitb727_aviation-airplane-supergalaxy-activity-7114624711833124864-4a79?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/achickinthecockpitb727_aviation-airplane-supergalaxy-activity-7114624711833124864-4a79?trk=public_profile_like_view>",
+            "title": "Sometimes you need contrast of size to get the big picture of a Galaxy...\n\n#aviation #airplane #supergalaxy #C5 #Texas #airforce United States Air\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
+        },
+        {
+            "link": "https://www.linkedin.com/posts/sowf_alpha5project-sowf-alpha5-activity-7114299492450856960-jSB-?trk=public_profile_like_view <view-source:https://www.linkedin.com/posts/sowf_alpha5project-sowf-alpha5-activity-7114299492450856960-jSB-?trk=public_profile_like_view>",
+            "title": "\ud83c\udf89\ud83c\udfa5 The record breaking shot! \ud83c\udfa5\ud83c\udf89\n\nOn September 28, 2023, the #Alpha5Project Team officially broke the world record for the highest HALO formation\u2026",
+            "action": "Liked",
+            "actor": "Michael Karr"
         }
     ]
 }
