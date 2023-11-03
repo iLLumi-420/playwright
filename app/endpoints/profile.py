@@ -133,8 +133,10 @@ def extract_data(filename):
             desc = desc.get_text(strip=True) if desc else None
            
             sidebar_profiles.append({'name':name,'desc':desc,'link':link})
-    else:
-        same_name_section = soup.find('section', class_='samename')
+
+    same_name_section = soup.find('section', class_='samename')   
+    similar_profiles = []
+    if same_name_section:
         same_name_lis = same_name_section.find_all('li')
         for li in same_name_lis:
             name = li.find('h3', class_='base-aside-card__title').get_text(strip=True)
@@ -142,7 +144,7 @@ def extract_data(filename):
             desc = li.find('p', class_='base-aside-card__subtitle')
             desc = desc.get_text(strip=True) if desc else None
            
-            sidebar_profiles.append({'name':name,'desc':desc,'link':link})
+            similar_profiles.append({'name':name,'desc':desc,'link':link})
 
 
 
@@ -198,6 +200,28 @@ def extract_data(filename):
 
 
                 sections[section_title].append({'link':link,'title':title,'subtitle':subtitle,'metadata':metadata})
+    
+    certification_section = soup.find('section', class_='certifications')
+    certifications = []
+    if certification_section:
+        certification_lis = certification_section.find_all('li')
+
+        for li in certification_lis:
+            level , degree= None, None
+            title = li.find('h3', class_='profile-section-card__title').get_text(strip=True)
+            institution_a = li.find('a', class_='profile-section-card__title-link')
+            institution = institution_a.get_text(strip=True) if institution_a else None
+            link = institution_a['href'] if institution_a else None
+            date = li.find('time')
+            date = date.get_text(strip=True) if date else None
+            certification_id = li.find('div', 'certifications__credential-id')
+            if certification_id:
+                certification_id = certification_id.get_text(strip=True)
+                certification_id = certification_id.split()[-1]
+            else:
+                certification_id = None
+
+            certifications.append({'title':title,'instituion':institution,'link':link,'date':date,'certification_id':certification_id})
         
 
     data = {
@@ -210,7 +234,9 @@ def extract_data(filename):
         'experience': experience,
         'education': education,
         'sections_data': sections,
-        'sidebar_profiles': sidebar_profiles
+        'sidebar_profiles': sidebar_profiles,
+        'similar_profiles': similar_profiles,
+        'certfications': certifications
     }
 
     print(data)
@@ -225,7 +251,7 @@ def extract_data(filename):
 
 if __name__=='__main__':
 
-    file = 'profile20.html'
+    file = 'profile1000.html'
     data = extract_data(file)
     
 
