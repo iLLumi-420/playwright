@@ -10,13 +10,15 @@
             "position": "Founder and CEO",
             "company": "Thrive Global",
             "link": "https://www.linkedin.com/company/thrive-global?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/thrive-global?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "time": "7 years 3 months"
+            "date": "Sep 2016-Present",
+            "time_in_years": 7.25
         },
         {
             "position": "President and Editor-in-Chief",
             "company": "The Huffington Post Media Group",
             "link": "https://www.linkedin.com/company/huffpost?trk=public_profile_experience-item_profile-section-card_subtitle-click <view-source:https://www.linkedin.com/company/huffpost?trk=public_profile_experience-item_profile-section-card_subtitle-click>",
-            "time": "11 years 4 months"
+            "date": "May 2005-Aug 2016",
+            "time_in_years": 11.333333333333334
         }
     ],
     "education": [

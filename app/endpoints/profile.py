@@ -14,6 +14,23 @@ def text_to_number(text):
     else:
         return number
     
+def duration_to_number(text):
+    split = text.strip().split()
+    print(split)
+    years, months = 0, 0
+
+    if 'year' in split or 'years' in split:
+        years_index = split.index('years') or split.index('year')
+        years = int(split[years_index - 1]) if years_index > 0 else 0
+
+    if 'month' in split or 'months' in split:
+        months_index = split.index('months') or split.index('month')
+        months = int(split[months_index - 1]) if months_index > 0 else 0
+
+    decimal_value = years + months / 12.0
+    return decimal_value
+
+    
 def return_text(element, classname):
     return element.select_one(f'.{classname}').get_text(strip=True)
 
@@ -51,9 +68,12 @@ def extract_data():
         company_name = company.get_text(strip=True)
         link = company['href']
         time_span = li.find('span', class_='date-range')
-        time = time_span.find('span').get_text(strip=True)
+        dates = time_span.find_all('time')
+        range = f'{dates[0].text}-{dates[1].text}' if len(dates)>1 else f'{dates[0].text}-Present'
+        duration = time_span.find('span').get_text(strip=True)
+        duration = duration_to_number(duration)
 
-        experience.append({'position':position,'company':company_name,'link':link,'time':time})
+        experience.append({'position':position,'company':company_name,'link':link,'date':range,'time_in_years':duration})
 
 
     education_section = soup.find('section', class_='education')
