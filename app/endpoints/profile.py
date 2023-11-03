@@ -15,16 +15,19 @@ def text_to_number(text):
         return number
     
 def duration_to_number(text):
-    split = text.strip().split()
+    text = text.strip()
+    if text == 'less than a year':
+        return 0
+    split = text.split()
     print(split)
     years, months = 0, 0
 
     if 'year' in split or 'years' in split:
-        years_index = split.index('years') or split.index('year')
+        years_index = split.index('years') if 'years' in split else split.index('year')
         years = int(split[years_index - 1]) if years_index > 0 else 0
 
     if 'month' in split or 'months' in split:
-        months_index = split.index('months') or split.index('month')
+        months_index = split.index('months') if 'months' in split else split.index('month')
         months = int(split[months_index - 1]) if months_index > 0 else 0
 
     decimal_value = years + months / 12.0
@@ -32,18 +35,24 @@ def duration_to_number(text):
 
     
 def return_text(element, classname):
-    return element.select_one(f'.{classname}').get_text(strip=True)
+    result = element.select_one(f'.{classname}')
+    if result:
+        result = result.get_text(strip=True)
+    else:
+        result = None
+    return result
 
-def extract_data():
+def extract_data(filename):
 
-    with open('new.html', 'r') as file:
+    with open(filename, 'r') as file:
         html = file.read()
 
     soup = BeautifulSoup(html, 'html.parser')   
 
     name = return_text(soup,'top-card-layout__title')
     desc = return_text(soup,'top-card-layout__headline')
-    address = soup.find('div', class_='top-card__subline-item').get_text(strip=True)
+    address = soup.find('div', class_='top-card__subline-item')
+    address = address.get_text(strip=True) if address else None
 
     top = soup.find('h3', class_='top-card-layout__first-subline')
     spans = top.find_all('span')
@@ -56,50 +65,87 @@ def extract_data():
 
 
     summary_section = soup.find('section', class_='summary')
-    about = return_text(summary_section, 'core-section-container__content')
+    if summary_section:
+        about = return_text(summary_section, 'core-section-container__content')
+    else:
+        about = None
 
     experience_section = soup.find('section', class_='experience')
-    experience_lis = experience_section.find_all('li')
+    if experience_section:
+        experience_lis = experience_section.find_all('li')
+        experience = []
+        for li in experience_lis:
+            position = li.find('h3', class_='profile-section-card__title')
+            
+            position = position.get_text(strip=True) if position else None
+           
+            company = li.find('a', 'profile-section-card__subtitle-link')
+            if company:
+                company_name = company.get_text(strip=True)
+                link = company['href']
+            else:
+                link = None
+                company_name = li.find('h4', class_='profile-section-card__subtitle').get_text(strip=True)
+            time_span = li.find('span', class_='date-range')
+            if time_span:
+                dates = time_span.find_all('time')
+                range = f'{dates[0].text}-{dates[1].text}' if len(dates)>1 else f'{dates[0].text}-Present'
+                duration = time_span.find('span').get_text(strip=True)
+                duration = duration_to_number(duration)
+            else:
+                range = None
+                duration = None
 
-    experience = []
-    for li in experience_lis:
-        position = li.find('h3', class_='profile-section-card__title').get_text(strip=True)
-        company = li.find('a', 'profile-section-card__subtitle-link')
-        company_name = company.get_text(strip=True)
-        link = company['href']
-        time_span = li.find('span', class_='date-range')
-        dates = time_span.find_all('time')
-        range = f'{dates[0].text}-{dates[1].text}' if len(dates)>1 else f'{dates[0].text}-Present'
-        duration = time_span.find('span').get_text(strip=True)
-        duration = duration_to_number(duration)
-
-        experience.append({'position':position,'company':company_name,'link':link,'date':range,'time_in_years':duration})
+            experience.append({'position':position,'company':company_name,'link':link,'date':range,'time_in_years':duration})
+    else:
+        experience = []
 
 
     education_section = soup.find('section', class_='education')
-    education_lis = education_section.find_all('li')
-
     education = []
-    for li in education_lis:
-        institution_a = li.find('a', class_='profile-section-card__title-link')
-        institution = institution_a.get_text(strip=True)
-        link = institution_a['href']
-        info_spans = li.find_all('span', class_='education__item')
-        level = info_spans[0].get_text(strip=True)
-        degree = info_spans[1].get_text(strip=True)
+    if education_section:
+        education_lis = education_section.find_all('li')
 
-        education.append({'instituion':institution,'link':link,'level':level,'degree':degree})
+        for li in education_lis:
+            level , degree= None, None
+            institution_a = li.find('a', class_='profile-section-card__title-link')
+            institution = institution_a.get_text(strip=True) if institution_a else None
+            link = institution_a['href'] if institution_a else None
+            info_spans = li.find_all('span', class_='education__item')
+            if len(info_spans) > 1:
+                level = info_spans[0].get_text(strip=True)
+                degree = info_spans[1].get_text(strip=True)
+            elif len(info_spans) == 1:
+                degree = info_spans[0].get_text(strip=True)
+                
+
+            education.append({'instituion':institution,'link':link,'level':level,'degree':degree})
 
 
     related_profiles_div = soup.find('div', class_='aside-profiles-list')
-    related_profile_li = related_profiles_div.find_all('li')
-
     sidebar_profiles = []
-    for li in related_profile_li:
-        name = li.find('h3', class_='base-aside-card__title').get_text(strip=True)
-        desc = li.find('p', class_='base-aside-card__subtitle').get_text(strip=True)
-        link = li.find('a', class_='base-card')['href']
-        sidebar_profiles.append({'name':name,'desc':desc,'link':link})
+    if related_profiles_div:
+
+        related_profile_li = related_profiles_div.find_all('li')        
+        for li in related_profile_li:
+            name = li.find('h3', class_='base-aside-card__title').get_text(strip=True)
+            link = li.find('a', class_='base-aside-card--link')['href']
+            desc = li.find('p', class_='base-aside-card__subtitle')
+            desc = desc.get_text(strip=True) if desc else None
+           
+            sidebar_profiles.append({'name':name,'desc':desc,'link':link})
+    else:
+        same_name_section = soup.find('section', class_='samename')
+        same_name_lis = same_name_section.find_all('li')
+        for li in same_name_lis:
+            name = li.find('h3', class_='base-aside-card__title').get_text(strip=True)
+            link = li.find('a', class_='base-aside-card--link')['href']
+            desc = li.find('p', class_='base-aside-card__subtitle')
+            desc = desc.get_text(strip=True) if desc else None
+           
+            sidebar_profiles.append({'name':name,'desc':desc,'link':link})
+
+
 
 
     sections_element = soup.find_all('section', class_='activities')
@@ -145,7 +191,19 @@ def extract_data():
                 sections['activities'].append({'link':link,'title':title,'subtitle':subtitle})
             
         else:
-            print('Not found')
+            sections[section_title] = []
+            for li in li_list:
+                link = li.find('a')['href']
+                title = li.find('h3', class_='base-main-card__title').get_text(strip=True)
+                subtitle = li.find('h4', class_='base-main-card__subtitle').get_text(strip=True)
+                metadata = li.find('span', class_='base-main-card__metadata-item')
+                if metadata:
+                    metadata = metadata.get_text(strip=True)
+                else:
+                    metadata = None
+
+
+                sections[section_title].append({'link':link,'title':title,'subtitle':subtitle,'metadata':metadata})
         
 
     data = {
@@ -157,20 +215,24 @@ def extract_data():
         'about': about,
         'experience': experience,
         'education': education,
-        'courses': sections['courses'],
-        'articles': sections['articles'],
-        'activities': sections['activities'],
+        'sections_data': sections,
         'sidebar_profiles': sidebar_profiles
     }
+
+    print(data)
+
+    with open(f'linkedin_{filename.split(".")[0]}_data.json', 'w') as file:
+        json.dump(data, file, indent=4)
+
     return data
     
 
 
 
 if __name__=='__main__':
-    data = extract_data()
-    with open('linkedin_profile_data.json', 'w') as file:
-        json.dump(data, file, indent=4)
 
+    file = 'profile20.html'
+    data = extract_data(file)
+    
 
 
